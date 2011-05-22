@@ -1,5 +1,5 @@
 {
-  "name": "mailer",
+  "name": "railway-mailer",
   "description": "Railway extenstion for sending emails",
   "version": "0.0.1",
   "repository": {
