@@ -21,7 +21,7 @@ var config = [
 var fs = require('fs');
 var path = require('path');
 
-if (path.existsSync(app.root + '/config') && !path.existsSync(app.root + '/config/mailer.yml')) {
+if (fs.existsSync(app.root + '/config') && !fs.existsSync(app.root + '/config/mailer.yml')) {
     fs.writeFileSync(app.root + '/config/mailer.yml', config, 'utf8');
 }
 
