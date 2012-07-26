@@ -1,6 +1,6 @@
 {
   "name": "railway-mailer",
-  "description": "Railway extenstion for sending emails",
+  "description": "Railway extension for sending emails",
   "version": "0.0.1",
   "repository": {
     "type": "git",
