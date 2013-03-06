@@ -1,10 +1,10 @@
 {
-  "name": "railway-mailer",
-  "description": "Railway extenstion for sending emails",
+  "name": "co-mailer",
+  "description": "Mailer extenstion for CompoundJS",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git://github.com/1602/railway-mailer.git"
+    "url": "git://github.com/compoundjs/mailer.git"
   },
   "author": "Anatoliy Chakkaev",
   "main": "lib/mailer.js",
