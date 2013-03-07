@@ -15,3 +15,7 @@ exports.resetPassword = function(user) {
         from: 'compoundjs@example.com'
     });
 };
+
+exports.passwordChanged = function() {
+    this.send();
+};
