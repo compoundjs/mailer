@@ -1,32 +1,49 @@
-Installation
-------------
+## Installation
 
 1. npm install co-mailer
 2. update config/autoload.js
+3. create `config/mailer.js` configuration, see [config/mailer.example.js][1]
 
-Usage
------
+## Usage
 
-Put you email views into the `app/views/emails` directory with following naming style:
+Put your mailers to `app/mailers/mailerName.js`. See [mailer example][2].
+Mailer file export set of emails:
 
-    templateName.format (html or text)
-    templateName.locale.format
+    exports.notification = function(user, event) {
+        this.layout = 'base';
+        this.locals.user = user;
+        this.locals.event = event;
+        this.send({
+            to: user.email,
+            subject: event.title
+            cc: ...,
+            bcc: ...,
+            ...
+            // full list of options available here:
+            // https://github.com/andris9/Nodemailer#e-mail-message-fields
+            // you can populate all except 'html' and 'text'
+            // which handled by mailer
+        });
+    };
 
-When you want to send email, just call
+Views for emails should be located in `app/views/mail` directory, and layouts
+in `app/views/layouts/mail` directory. Naming convention as follows: `mailerName/emailType.format.js`. For example for user mailer's notification email it will be:
 
-    compound.mailer.sendEmail(
-        'templateName',
-         data,
-         {subject: 'Email subject', email: 'recipient@example.com', from: 'me@home'}
-    );
+    ./app/views/mail/user/notification.html.ejs
+    ./app/views/mail/user/notification.text.ejs
 
-Contribution
-------------
+Layout name by default is `default.{html,text}.ejs`, if mailer find
+`app/views/layouts/mail/user.html.ejs` it will be used for user mailer. But
+default could be overwritten in mail handler.
 
-Contributors are welcome
+Any compoundjs helper available in view. Path helper should be used with
+{baseURL: 'http://my.domain.tld'} option, or specify it `baseURL` in config.
+Otherwise you get useless paths in email.
 
-MIT License
-===========
+[1]: https://github.com/compoundjs/mailer/blob/master/assets/config/mailer.example.js)
+[2]: https://github.com/compoundjs/mailer/blob/master/test/app/app/mailers/user.js)
+
+## License (MIT)
 
 ```text
 Copyright (C) 2011 by Anatoliy Chakkaev
@@ -51,3 +68,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
+
