@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Mailer by compoundjs</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Mailer</h1>
+        <p>Email delivery service. Fast, easy, robust.</p>
+
+        <p class="view"><a href="https://github.com/compoundjs/mailer">View the Project on GitHub <small>compoundjs/mailer</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/compoundjs/mailer/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/compoundjs/mailer/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/compoundjs/mailer">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Installation</h2>
+
+<ol>
+<li>npm install co-mailer --save</li>
+<li>update config/autoload.js</li>
+<li>create <code>config/mailer.js</code> configuration, see <a href="https://github.com/compoundjs/mailer/blob/master/assets/config/mailer.example.js)">config/mailer.example.js</a>
+</li>
+</ol><h2>Usage</h2>
+
+<p>Call <code>compound.mailer.send('user/notification', user, event);</code> to send email.
+Controller have <code>sendEmail</code> method with the same signature.</p>
+
+<p>Put your mailer to <code>app/mailers/mailerName.js</code>. See <a href="https://github.com/compoundjs/mailer/blob/master/test/app/app/mailers/user.js)">mailer example</a>.
+Mailer file should export set of emails, for example <code>app/mailers/user.js</code>:</p>
+
+<pre><code>exports.notification = function(user, event) {
+    this.layout = 'base';
+    this.locals.user = user;
+    this.locals.event = event;
+    this.send({
+        to: user.email,
+        subject: event.title
+        cc: ...,
+        bcc: ...,
+        ...
+        // full list of options available here:
+        // https://github.com/andris9/Nodemailer#e-mail-message-fields
+        // you can populate all except 'html' and 'text'
+        // which handled by mailer
+    });
+};
+</code></pre>
+
+<p>Views for emails should be located in <code>app/views/mail</code> directory, and layouts
+in <code>app/views/layouts/mail</code> directory. Naming convention as follows: <code>mailerName/emailType.format.js</code>. For example for user mailer's notification email it will be:</p>
+
+<pre><code>./app/views/mail/user/notification.html.ejs
+./app/views/mail/user/notification.text.ejs
+</code></pre>
+
+<p>Layout name by default is <code>default.{html,text}.ejs</code>, if mailer find
+<code>app/views/layouts/mail/user.html.ejs</code> it will be used for user mailer. But
+default could be overwritten in mail handler.</p>
+
+<p>Any compoundjs helper available in view. Path helper should be used with
+{baseURL: '<a href="http://my.domain.tld'">http://my.domain.tld'</a>} option, or specify it <code>baseURL</code> in config.
+Otherwise you get useless paths in email.</p>
+
+<h2>License (MIT)</h2>
+
+<div class="highlight"><pre>Copyright (C) 2011 by Anatoliy Chakkaev
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+</pre></div>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<div class="highlight"><pre>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/compoundjs">compoundjs</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
