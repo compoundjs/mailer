@@ -1,13 +1,16 @@
 ## Installation
 
-1. npm install co-mailer
+1. npm install co-mailer --save
 2. update config/autoload.js
 3. create `config/mailer.js` configuration, see [config/mailer.example.js][1]
 
 ## Usage
 
-Put your mailers to `app/mailers/mailerName.js`. See [mailer example][2].
-Mailer file export set of emails:
+Call `compound.mailer.send('user/notification', user, event);` to send email.
+Controller have `sendEmail` method with the same signature.
+
+Put your mailer to `app/mailers/mailerName.js`. See [mailer example][2].
+Mailer file should export set of emails, for example `app/mailers/user.js`:
 
     exports.notification = function(user, event) {
         this.layout = 'base';
