@@ -7,13 +7,12 @@
     "url": "git://github.com/compoundjs/mailer.git"
   },
   "author": "Anatoliy Chakkaev",
-  "main": "lib/mailer.js",
+  "main": "index.js",
   "directories": {
     "lib": "lib"
   },
   "dependencies": {
-    "nodemailer": ">=0.1.11",
-    "yaml": ">=0.1.2"
+    "nodemailer": "latest",
   },
   "engines": {
     "node": "*"
