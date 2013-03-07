@@ -19,8 +19,8 @@ describe('CompoundMailer', function() {
             res.message.should.include('Hello <strong>Ben Afflek</strong>!');
             res.message.should.include('Hello, Ben Afflek.');
             res.message.should.include('HEADER');
-            console.log(res.message.split('\n\r?\n')[0]);
-            console.log(res.message.split('\n\r?\n')[1]);
+            // console.log(res.message.split('\n\r?\n')[0]);
+            // console.log(res.message.split('\n\r?\n')[1]);
             done();
         });
     });
