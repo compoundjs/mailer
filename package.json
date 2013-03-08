@@ -21,6 +21,9 @@
   "dependencies": {
     "nodemailer": "0.3.43"
   },
+  "scripts": {
+    "test": "make test"
+  },
   "engines": {
     "node": "*"
   }
