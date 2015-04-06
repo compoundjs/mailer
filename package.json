@@ -19,7 +19,8 @@
     "ejs": "0.8.3"
   },
   "dependencies": {
-    "nodemailer": "0.6.1"
+    "nodemailer": "0.6.1",
+    "juice": "1.0.0"
   },
   "scripts": {
     "test": "make test"
